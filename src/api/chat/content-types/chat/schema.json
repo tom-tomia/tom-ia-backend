@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -25,6 +25,20 @@
       "mappedBy": "chat"
     },
     "chat_id": {
+      "type": "string"
+    },
+    "AIResponse_generated": {
+      "type": "boolean",
+      "default": false
+    },
+    "last_question_memory": {
+      "type": "integer",
+      "default": 0
+    },
+    "chat_title": {
+      "type": "string"
+    },
+    "selected_output": {
       "type": "string"
     }
   }
