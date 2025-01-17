@@ -450,7 +450,7 @@ export interface ApiSubscriptionPlanSubscriptionPlan
     singularName: 'subscription-plan';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     benefits: Schema.Attribute.JSON;
