@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_school_schools",
+  "info": {
+    "displayName": "School",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "school_name": {
+      "type": "string"
+    },
+    "school_location": {
+      "type": "string"
+    },
+    "subjects": {
+      "type": "string"
+    },
+    "year_groups": {
+      "type": "string"
+    }
+  }
+}

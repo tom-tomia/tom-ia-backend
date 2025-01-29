@@ -112,6 +112,11 @@
     },
     "plan_limit": {
       "type": "integer"
+    },
+    "school_info": {
+      "type": "component",
+      "repeatable": false,
+      "component": "school.school"
     }
   }
 }

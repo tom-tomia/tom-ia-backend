@@ -970,6 +970,7 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    school_info: Schema.Attribute.Component<'school.school', false>;
     slug: Schema.Attribute.UID;
     stripeCurrentPeriodEnd: Schema.Attribute.Date;
     stripeCustomerId: Schema.Attribute.String;
