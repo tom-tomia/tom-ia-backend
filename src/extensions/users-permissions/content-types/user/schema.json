@@ -109,6 +109,9 @@
     "cancelled": {
       "type": "boolean",
       "default": false
+    },
+    "plan_limit": {
+      "type": "integer"
     }
   }
 }

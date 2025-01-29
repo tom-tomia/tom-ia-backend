@@ -445,6 +445,7 @@ export interface ApiSubscriptionPlanSubscriptionPlan
   extends Struct.CollectionTypeSchema {
   collectionName: 'subscription_plans';
   info: {
+    description: '';
     displayName: 'Subscription Plan';
     pluralName: 'subscription-plans';
     singularName: 'subscription-plan';
@@ -457,6 +458,8 @@ export interface ApiSubscriptionPlanSubscriptionPlan
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    disabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    generation_limit: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -957,6 +960,7 @@ export interface PluginUsersPermissionsUser
       }>;
     pendingDowngrade: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
+    plan_limit: Schema.Attribute.Integer;
     planId: Schema.Attribute.String;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "subscription-plan",
     "pluralName": "subscription-plans",
-    "displayName": "Subscription Plan"
+    "displayName": "Subscription Plan",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,6 +23,13 @@
     },
     "benefits": {
       "type": "json"
+    },
+    "generation_limit": {
+      "type": "integer"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
