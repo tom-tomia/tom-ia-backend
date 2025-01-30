@@ -972,12 +972,14 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    school_info: Schema.Attribute.Component<'school.school', false>;
+    school_location: Schema.Attribute.String;
+    school_name: Schema.Attribute.String;
     slug: Schema.Attribute.UID;
     stripeCurrentPeriodEnd: Schema.Attribute.Date;
     stripeCustomerId: Schema.Attribute.String;
     stripePriceId: Schema.Attribute.String;
     stripeSubscriptionId: Schema.Attribute.String;
+    subjects: Schema.Attribute.String;
     tomia: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -988,6 +990,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    year_groups: Schema.Attribute.String;
   };
 }
 
