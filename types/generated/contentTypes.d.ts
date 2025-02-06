@@ -430,6 +430,7 @@ export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    questionId: Schema.Attribute.String;
     role: Schema.Attribute.Enumeration<['assistant', 'user']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
