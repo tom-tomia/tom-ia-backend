@@ -393,6 +393,7 @@ export interface ApiChatChat extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::chat.chat'> &
       Schema.Attribute.Private;
+    messageJSON: Schema.Attribute.JSON;
     messages: Schema.Attribute.Relation<'oneToMany', 'api::message.message'>;
     publishedAt: Schema.Attribute.DateTime;
     selected_output: Schema.Attribute.String;

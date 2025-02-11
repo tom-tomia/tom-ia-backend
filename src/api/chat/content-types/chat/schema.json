@@ -40,6 +40,9 @@
     },
     "selected_output": {
       "type": "string"
+    },
+    "messageJSON": {
+      "type": "json"
     }
   }
 }
