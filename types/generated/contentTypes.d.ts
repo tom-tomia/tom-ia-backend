@@ -949,6 +949,7 @@ export interface PluginUsersPermissionsUser
         minLength: 6;
       }>;
     firstname: Schema.Attribute.String;
+    googleId: Schema.Attribute.String;
     lastname: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

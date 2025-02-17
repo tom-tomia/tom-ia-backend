@@ -130,6 +130,9 @@
     },
     "year_groups": {
       "type": "string"
+    },
+    "googleId": {
+      "type": "string"
     }
   }
 }
