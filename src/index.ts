@@ -1,42 +1,40 @@
 export default {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
   register(/*{ strapi }*/) {},
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
   async bootstrap({ strapi }) {
     await strapi
-      .service("plugin::users-permissions.providers-registry")
-      .register(`google`, ({ purest }) => async ({ query }) => {
-        const google = purest({ provider: "google" });
+      .plugin("users-permissions")
+      .service("providers-registry")
+      .add("google", {
+        enabled: true,
+        icon: "https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-512.png",
+        key: process.env.GOOGLE_CLIENT_ID,
+        secret: process.env.GOOGLE_CLIENT_SECRET,
+        callback: `${strapi.config.server.url}/api/connect/google/callback`,
+        scope: ["email", "profile"],
+        oauth: 2,
+        authorize_url: "https://accounts.google.com/o/oauth2/v2/auth",
+        access_url: "https://oauth2.googleapis.com/token",
+        async authCallback({ accessToken, providers, purest }) {
+          const google = purest({ provider: "google" });
 
-        const res = await google
-          .get("https://www.googleapis.com/oauth2/v3/userinfo")
-          .auth(query.access_token)
-          .request();
+          const res = await google
+            .get("https://www.googleapis.com/oauth2/v3/userinfo")
+            .auth(accessToken)
+            .request();
 
-        console.log("This is the response", res);
-        console.log("This is google", query);
+          console.log("This is the response", res);
 
-        const { body } = res;
+          const { body } = res;
 
-        return {
-          email: body.email,
-          first_name: body.given_name,
-          last_name: body.family_name,
-          provider: "google",
-          username: body.email.split("@")[0],
-        };
+          return {
+            email: body.email,
+            firstname: body.given_name,
+            lastname: body.family_name,
+            provider: "google",
+            username: body.email.split("@")[0],
+          };
+        },
       });
   },
 };
