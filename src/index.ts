@@ -1,5 +1,3 @@
-// import type { Core } from '@strapi/strapi';
-
 export default {
   /**
    * An asynchronous register function that runs before
@@ -7,7 +5,7 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register(/*{ strapi }*/) {},
 
   /**
    * An asynchronous bootstrap function that runs before
@@ -16,5 +14,29 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap({ strapi }) {
+    await strapi
+      .service("plugin::users-permissions.providers-registry")
+      .register(`google`, ({ purest }) => async ({ query }) => {
+        const google = purest({ provider: "google" });
+
+        const res = await google
+          .get("https://www.googleapis.com/oauth2/v3/userinfo")
+          .auth(query.access_token)
+          .request();
+
+        console.log("This is the response", res);
+        console.log("This is google", query);
+
+        const { body } = res;
+
+        return {
+          email: body.email,
+          first_name: body.given_name,
+          last_name: body.family_name,
+          provider: "google",
+          username: body.email.split("@")[0],
+        };
+      });
+  },
 };
