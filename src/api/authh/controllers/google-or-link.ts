@@ -1,4 +1,3 @@
-
 import { OAuth2Client } from "google-auth-library";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -35,14 +34,7 @@ export default ({ strapi }: { strapi: any }) => ({
       });
 
       if (user) {
-        console.log("🚀 ~ googleOrLink ~ user:", user);
-        // User exists, update Google ID if not set
-        if (!user.googleId) {
-          user = await strapi.query("plugin::users-permissions.user").update({
-            where: { id: user.id },
-            data: { googleId: payload.sub },
-          });
-        }
+        return ctx.badRequest("User already exists");
       } else {
         // Create new user
         user = await strapi.query("plugin::users-permissions.user").create({
